@@ -8,6 +8,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('sparks', nargs='*', help="table(s) to reference")
 parser.add_argument("-c", "--chargen", help="run character generator", action="store_true")
+parser.add_argument("-l", "--list", help="list failed careers", action="store_true")
 args = parser.parse_args()
 
 f = open('data.json')
@@ -104,4 +105,15 @@ if args.chargen:
     print("\n" + career["attr2name"])
     print("\t" + career["attr2"][HP-1] + "\n")
       
-      
+if args.list:
+  count = 1
+  for c in data["careerslist"]:
+    if type(c) == list:
+      i = ord('A')
+      for c2 in c:
+        print(str(count) + chr(i) + "\t " + c2["careername"])
+        i += 1;
+    else:
+        print(str(count) + "\t" + c["careername"])
+    count += 1
+   
