@@ -42,8 +42,6 @@ if args.chargen:
   careeridx = 10000
   careerslist = data["careerslist"]
 
-  print("WARNING: Careerslist is not complete. Only failed careers 1.." + str(len(careerslist)) + " are available at this time")
-
   while careeridx >= len(careerslist):
     STR = randint(1, 6) + randint(1, 6) + randint(1, 6)
     DEX = randint(1, 6) + randint(1, 6) + randint(1, 6)
@@ -58,7 +56,6 @@ if args.chargen:
     minidx = max(min(12, minstat), 3) - 3
 
     careeridx = data["careerstable"][maxidx][minidx]
-    print(careeridx)
 
   career = careerslist[careeridx - 1]
   if(type(career) == list):
