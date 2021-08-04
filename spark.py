@@ -3,13 +3,12 @@ from random import randint
 import json
 import tracery
 from tracery.modifiers import base_english
-
 import argparse
+
 parser = argparse.ArgumentParser()
 parser.add_argument('sparks', nargs='*', help="table(s) to reference")
 parser.add_argument("-c", "--chargen", help="run character generator", action="store_true")
 args = parser.parse_args()
-# print(args.sparks)
 
 f = open('data.json')
 data = json.load(f)
@@ -37,14 +36,13 @@ for spark in args.sparks:
   else:
     print(rulestable[randint(0, len(rulestable)-1)])
 
-
 if args.chargen:
 
   careeridx = 10000
   careerslist = data["careerslist"]
 
-  print("WARNING: Careerslist is not complete. Only failed careers 1.." + str(len(careerslist)-1) + " are available")
-  
+  print("WARNING: Careerslist is not complete. Only failed careers 1.." + str(len(careerslist)) + " are available at this time")
+
   while careeridx >= len(careerslist):
     STR = randint(1, 6) + randint(1, 6) + randint(1, 6)
     DEX = randint(1, 6) + randint(1, 6) + randint(1, 6)
@@ -90,7 +88,7 @@ if args.chargen:
   print("\nSTR: " + str(STR) + " DEX: " + str(DEX) + " CHA: " + str(CHA) + " " + str(HP) + "hp £" + str(POUNDS))
 
   if ("debtor" in career):
-    print("\nDebtor:")
+    print("\nIf you are the youngest player, the whole group is £10k in debt to...")
     print("\t" + career["debtor"])
     
   if ("equipment" in career):
